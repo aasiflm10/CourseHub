@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Menu } from "lucide-react"
@@ -6,6 +8,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { signIn, signOut } from "next-auth/react"
 
 export function Appbar(){
     return <header className="px-4 lg:px-6 h-14 flex items-center border-b border-gray-800">
@@ -25,11 +28,14 @@ export function Appbar(){
       </Link>
     </nav>
     <div className="ml-auto hidden md:flex gap-2">
-      <Button variant="ghost" asChild>
-        <Link href="#">Log in</Link>
+      <Button onClick = {()=>{signIn()}}variant="ghost" asChild>
+      <Link href="#">Login</Link>
       </Button>
       <Button asChild>
         <Link href="#">Sign up</Link>
+      </Button>
+      <Button onClick={()=>{signOut()}}asChild>
+        <Link href="#">Log out</Link>
       </Button>
     </div>
     <Sheet>
